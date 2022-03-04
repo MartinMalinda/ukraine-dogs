@@ -48,6 +48,14 @@
       color: #005abb;
       text-decoration: none;
     }
+
+    iframe::before {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      content: 'Načítám data...'
+    }
   </style>
 </head>
 <body>
@@ -57,10 +65,18 @@
     <strong>Web spravuje jmeno@email.cz</strong>
   </p>
   <div class="embed">
-    <iframe class="airtable-embed" src="https://airtable.com/embed/shrKt7qv46kY2Spdm?backgroundColor=yellow&viewControls=on" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+    <iframe class="airtable-embed" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
   </div>
   <footer>
     <small>Web vytvořil <a href="https://martinmalinda.cz">Martin Malinda</a> ✌️ 🇺🇦 za pomocí služby <a href="https://airtable.com/">Airtable</a>.</small> 
   </footer>
+  <script>
+    // ?detail=rec4akFgZv6eUhrg6
+    const iframe = document.querySelector('iframe');
+    const url = new URL(window.location.href);
+    const detail = url.searchParams.get('detail');
+    const iframeUrl = `https://airtable.com/embed/shrKt7qv46kY2Spdm${detail ? `/tblLBQSmUBstQVag6/viwZIb0nKGEspmshb/${detail}` : ''}?backgroundColor=yellow&viewControls=on`;
+    iframe.src = iframeUrl;
+  </script>
 </body>
 </html>
